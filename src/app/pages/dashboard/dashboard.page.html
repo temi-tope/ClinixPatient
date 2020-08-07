@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Complain</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div *ngIf="user != undefined">
+    Welcome {{ user["name"]  }},
+    Please tell us your complain so a doctor can attend to you.
+</div>
+  <form #form="ngForm" (ngSubmit)="complain(form)" method="post">
+    <ion-toolbar>
+      <ion-row>
+        <ion-col>
+    <ion-item>
+      <ion-label position="floating">Complain</ion-label>
+      <ion-input ngModel name="complain" required maxlength="50"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Any other information</ion-label>
+      <ion-textarea ngModel name="others" rows="6" cols="20" maxlength="650" placeholder="Eg Temprature: 37c, Weight: 45kg"></ion-textarea>
+    </ion-item>
+  </ion-col>
+</ion-row>
+</ion-toolbar>
+<div *ngIf="sessionId == undefined">
+  <ion-button type="submit" class="ion-padding" expand="full" [disabled]="!form.valid" color="primary">Submit Complain</ion-button>
+</div>
+  </form>
+</ion-content>

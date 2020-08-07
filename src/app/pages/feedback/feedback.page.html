@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Feedback
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="sendFeedback(form)" method="post">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Are you satisfied or not</ion-label>
+        <ion-select [ngModel]="type" id ="type" name="type" (ionChange) = "onChange(type)" required>
+            <ion-select-option disabled>Choose one</ion-select-option>
+            <ion-select-option value="1">Satisfied</ion-select-option>
+            <ion-select-option value="0">Not Satisfied</ion-select-option>
+        </ion-select>
+    </ion-item>
+      <ion-item *ngIf="value === 0">
+        <ion-label position="floating" >
+          Write down your feedback</ion-label>
+        <ion-textarea
+          ngModel
+          name="details"
+          rows="6"
+          cols="20"
+          maxlength="100"
+        ></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <div *ngIf="doctor != undefined">
+<ion-list style="text-align:center">
+<ion-button type="submit"  color="primary" [disabled]="!form.valid" >Send</ion-button>
+</ion-list>
+</div>
+</form>
+</ion-content>
